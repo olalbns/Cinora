@@ -1,0 +1,4 @@
+import nodemailer from 'nodemailer'
+export async function sendPasswordReset(to: string, resetUrl: string): Promise<void> {
+  const config=useRuntimeConfig();const transport=nodemailer.createTransport({host:String(config.smtpHost),port:Number(config.smtpPort),secure:false,disableFileAccess:true,disableUrlAccess:true});await transport.sendMail({from:String(config.smtpFrom),to,subject:'Réinitialisation de votre mot de passe CINORA',text:`Une demande de réinitialisation a été reçue. Ouvrez ce lien valable 30 minutes :\n\n${resetUrl}\n\nIgnorez ce message si vous n'êtes pas à l'origine de la demande.`,html:`<p>Une demande de réinitialisation a été reçue.</p><p><a href="${resetUrl.replace(/&/g,'&amp;').replace(/"/g,'&quot;')}">Choisir un nouveau mot de passe</a></p><p>Ce lien est valable 30 minutes.</p>`})
+}

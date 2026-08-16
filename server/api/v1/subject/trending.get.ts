@@ -1,0 +1,1 @@
+export default defineEventHandler(async (event)=>{const q=getQuery(event);return apiOk(await listObservedSubjects('s.published=true',[],'s.popularity DESC',Math.max(1,Number(q.page||1)),Math.min(50,Number(q.perPage||20))))})

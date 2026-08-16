@@ -1,0 +1,3 @@
+export default defineEventHandler(async (event) => {
+  const body=await readBody<any>(event); const keyword=String(body.keyword||'').trim(); if(keyword.length<2) return apiOk({subjectList:[],keywords:[]}); const limit=Math.min(20,Number(body.perPage||8)); const rows=await dbQuery('SELECT s.*, (SELECT count(*)::int FROM seasons se WHERE se.subject_id=s.id) season_count FROM subjects s WHERE s.published=true AND s.title ILIKE $1 ORDER BY similarity(s.title,$2) DESC,s.popularity DESC LIMIT $3',[`%${keyword}%`,keyword,limit]); return apiOk({subjectList:rows.rows.map(observedSubject),keywords:[...new Set(rows.rows.flatMap(value=>value.genres||[]))].slice(0,5)})
+})

@@ -1,0 +1,1 @@
+export default defineEventHandler(async(event)=>{const detail=await observedDetail(String(getQuery(event).detailPath||''));if(!detail)throw createError({statusCode:404,statusMessage:'Contenu introuvable'});return apiOk(detail)})

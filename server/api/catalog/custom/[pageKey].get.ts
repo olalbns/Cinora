@@ -1,0 +1,1 @@
+export default defineEventHandler(async(event)=>{const result=await dbQuery('SELECT * FROM custom_pages WHERE page_key=$1 AND published=true',[String(getRouterParam(event,'pageKey'))]);if(!result.rows[0])throw createError({statusCode:404,statusMessage:'Page introuvable'});return {page:result.rows[0]}})

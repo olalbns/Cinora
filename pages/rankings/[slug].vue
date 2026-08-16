@@ -1,0 +1,3 @@
+<script setup lang="ts">
+const route=useRoute();const{data}=await useFetch<any>(`/api/catalog/rankings/${route.params.slug}`);if(!data.value)throw createError({statusCode:404});useSeoMeta({title:()=>data.value?.ranking.title})
+</script><template><div v-if="data" class="listing-page page-top container container--wide"><header class="simple-hero"><p class="eyebrow">CLASSEMENT</p><h1>{{ data.ranking.title }}</h1><p>{{ data.ranking.description }}</p></header><div class="catalog-grid catalog-grid--wide"><MovieCard v-for="item in data.items" :key="item.id" :item="item" :rank="item.trendingRank"/></div></div></template>

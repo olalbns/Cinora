@@ -1,0 +1,1 @@
+export default defineEventHandler(async(event)=>{requireAdmin(event);const rows=await dbQuery('SELECT c.*,u.display_name,s.title subject_title FROM comments c JOIN users u ON u.id=c.user_id JOIN subjects s ON s.id=c.subject_id ORDER BY c.created_at DESC LIMIT 300');return {items:rows.rows}})

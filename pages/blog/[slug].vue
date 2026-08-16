@@ -1,0 +1,3 @@
+<script setup lang="ts">
+const route=useRoute();const{data}=await useFetch<any>(`/api/catalog/blog/${route.params.slug}`);if(!data.value)throw createError({statusCode:404});useSeoMeta({title:()=>data.value?.item.title,description:()=>data.value?.item.excerpt})
+</script><template><article v-if="data" class="article-page page-top container"><header><p class="eyebrow">MAGAZINE</p><h1>{{ data.item.title }}</h1><p>{{ data.item.excerpt }}</p><span>{{ data.item.author_name }} · {{ new Date(data.item.published_at).toLocaleDateString() }}</span></header><img :src="data.item.cover_url" :alt="data.item.title"><div class="article-content">{{ data.item.content }}</div></article></template>

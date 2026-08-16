@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "site": {
+    "name": "CINOR",
+    "shortName": "C",
+    "tagline": "Le cinéma vous appartient.",
+    "accent": "#7c3aed",
+    "supportEmail": "bonjour@cinora.example",
+    "logoUrl": ""
+  },
+  "api": {
+    "mode": "mock",
+    "publicBase": "",
+    "serverBase": "",
+    "timeout": 10000,
+    "callerSource": "node-frontend",
+    "endpoints": {
+      "home": "/home",
+      "search": "/subject/search",
+      "filter": "/subject/filter",
+      "trending": "/subject/trending",
+      "detail": "/detail",
+      "platformPlaylist": "/platform/play-list",
+      "playbackSession": "/playback/session"
+    }
+  },
+  "navigation": [
+    {
+      "id": "home",
+      "label": "Accueil",
+      "to": "/",
+      "enabled": true
+    },
+    {
+      "id": "movies",
+      "label": "Films",
+      "to": "/browse?type=movie",
+      "enabled": true
+    },
+    {
+      "id": "series",
+      "label": "Séries",
+      "to": "/browse?type=series",
+      "enabled": true
+    },
+    {
+      "id": "trending",
+      "label": "Tendances",
+      "to": "/trending",
+      "enabled": true
+    },
+    {
+      "id": "collections",
+      "label": "Collections",
+      "to": "/platforms",
+      "enabled": true
+    }
+  ],
+  "features": {
+    "search": true,
+    "favorites": true,
+    "history": true,
+    "trending": true,
+    "collections": true,
+    "player": true
+  },
+  "seo": {
+    "titleSuffix": "CINORA",
+    "description": "Une expérience cinéma, pensée pour vous.",
+    "indexable": false
+  },
+  "updatedAt": "2026-08-15T15:07:00.730Z"
+}

@@ -1,0 +1,1 @@
+export default defineEventHandler(async(event)=>{const user=await requireUser(event);const body=await readBody<{subjectId?:string}>(event);await dbQuery('INSERT INTO user_favorites(user_id,subject_id) VALUES($1,$2) ON CONFLICT DO NOTHING',[user.id,String(body.subjectId||'')]);return {ok:true}})

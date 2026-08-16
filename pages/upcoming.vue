@@ -1,0 +1,3 @@
+<script setup lang="ts">
+const{data}=await useFetch<any>('/api/catalog/upcoming');useSeoMeta({title:'Prochainement'})
+</script><template><div class="listing-page page-top container container--wide"><header class="simple-hero"><p class="eyebrow">CALENDRIER</p><h1>Bientôt sur<br><em>CINORA.</em></h1><p>Les sorties à venir, directement issues de PostgreSQL.</p></header><div v-if="data?.items.length" class="catalog-grid catalog-grid--wide"><MovieCard v-for="item in data.items" :key="item.id" :item="item"/></div><EmptyState v-else title="Aucune sortie annoncée" text="Les prochaines sorties apparaîtront ici dès leur publication."/></div></template>

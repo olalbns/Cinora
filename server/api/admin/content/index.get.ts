@@ -1,0 +1,1 @@
+export default defineEventHandler(async(event)=>{requireAdmin(event);const q=getQuery(event);const search=String(q.q||'');const rows=await dbQuery('SELECT * FROM subjects WHERE title ILIKE $1 ORDER BY updated_at DESC LIMIT 200',[`%${search}%`]);return {items:rows.rows}})

@@ -1,0 +1,3 @@
+<script setup lang="ts">
+const{data}=await useFetch<any>('/api/catalog/rankings');useSeoMeta({title:'Classements'})
+</script><template><div class="listing-page page-top container container--wide"><header class="simple-hero"><p class="eyebrow">SÉLECTIONS</p><h1>Les classements<br><em>CINORA.</em></h1><p>Des listes éditoriales alimentées par la base locale.</p></header><div class="ranking-cards"><NuxtLink v-for="ranking in data?.items" :key="ranking.id" :to="`/rankings/${ranking.slug}`"><span>{{ String(ranking.position).padStart(2,'0') }}</span><div><h2>{{ ranking.title }}</h2><p>{{ ranking.description }}</p><small>{{ ranking.item_count }} titres</small></div><AppIcon name="arrow-right"/></NuxtLink></div></div></template>

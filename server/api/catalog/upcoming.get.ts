@@ -1,0 +1,2 @@
+import { DatabaseContentAdapter } from '~/services/content/database.adapter'
+export default defineEventHandler(async()=>{const rows=await dbQuery('SELECT slug FROM subjects WHERE published=true AND release_date>CURRENT_DATE ORDER BY release_date ASC LIMIT 100');const adapter=new DatabaseContentAdapter();return {items:(await Promise.all(rows.rows.map(value=>adapter.getBySlug(value.slug)))).filter(Boolean)}})

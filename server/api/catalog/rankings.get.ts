@@ -1,0 +1,1 @@
+export default defineEventHandler(async()=>({items:(await dbQuery('SELECT r.*,count(ri.subject_id)::int item_count FROM rankings r LEFT JOIN ranking_items ri ON ri.ranking_id=r.id WHERE r.active=true GROUP BY r.id ORDER BY r.position')).rows}))

@@ -1,0 +1,2 @@
+import { DatabaseContentAdapter } from '~/services/content/database.adapter'
+export default defineEventHandler(async(event)=>{const user=await requireUser(event);const rows=await dbQuery('SELECT s.slug FROM user_favorites f JOIN subjects s ON s.id=f.subject_id WHERE f.user_id=$1 ORDER BY f.created_at DESC',[user.id]);const adapter=new DatabaseContentAdapter();const items=(await Promise.all(rows.rows.map(value=>adapter.getBySlug(value.slug)))).filter(Boolean);return {items}})

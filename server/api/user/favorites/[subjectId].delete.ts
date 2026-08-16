@@ -1,0 +1,1 @@
+export default defineEventHandler(async(event)=>{const user=await requireUser(event);await dbQuery('DELETE FROM user_favorites WHERE user_id=$1 AND subject_id=$2',[user.id,String(getRouterParam(event,'subjectId'))]);return {ok:true}})

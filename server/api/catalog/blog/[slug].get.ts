@@ -1,0 +1,1 @@
+export default defineEventHandler(async(event)=>{const result=await dbQuery('SELECT * FROM blog_posts WHERE slug=$1 AND published=true',[String(getRouterParam(event,'slug'))]);if(!result.rows[0])throw createError({statusCode:404,statusMessage:'Article introuvable'});return {item:result.rows[0]}})

@@ -1,0 +1,1 @@
+export default defineEventHandler(async()=>({items:(await dbQuery('SELECT id,slug,title,excerpt,cover_url,author_name,language,published_at FROM blog_posts WHERE published=true ORDER BY published_at DESC')).rows}))

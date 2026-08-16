@@ -1,0 +1,3 @@
+<script setup lang="ts">
+const{data}=await useFetch<any>('/api/catalog/blog');useSeoMeta({title:'Magazine'})
+</script><template><div class="legal-page page-top container container--wide"><header><p class="eyebrow">MAGAZINE</p><h1>Histoires autour<br>des histoires.</h1><p>Actualités et sélections éditoriales.</p></header><div class="blog-grid"><NuxtLink v-for="post in data?.items" :key="post.id" :to="`/blog/${post.slug}`"><img :src="post.cover_url" :alt="post.title"><div><span>{{ new Date(post.published_at).toLocaleDateString() }}</span><h2>{{ post.title }}</h2><p>{{ post.excerpt }}</p></div></NuxtLink></div></div></template>
